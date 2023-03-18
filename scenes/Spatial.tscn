@@ -1,20 +1,20 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://codes/camera_controller.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Vehicle.tscn" type="PackedScene" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://Asphalt.tres" type="Material" id=4]
 
-[sub_resource type="PlaneMesh" id=1]
+[sub_resource type="SpatialMaterial" id=1]
+albedo_texture = ExtResource( 3 )
 
-[sub_resource type="SpatialMaterial" id=2]
-albedo_color = Color( 0.501961, 0.501961, 0.501961, 1 )
-
-[sub_resource type="ConcavePolygonShape" id=3]
-data = PoolVector3Array( 1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1 )
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.878431, 0.0941176, 0.0941176, 1 )
 
 [node name="Spatial" type="Spatial"]
 
 [node name="Vehicle" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.43066, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 141.266, 6.91332, -141.458 )
 
 [node name="Axis" type="Spatial" parent="Vehicle"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.77548, 0 )
@@ -28,12 +28,111 @@ far = 500.0
 transform = Transform( 0.866025, -0.12941, 0.482963, 0, 0.965926, 0.258819, -0.5, -0.224144, 0.836516, 0, 13.2495, 0 )
 shadow_enabled = true
 
-[node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0 )
-mesh = SubResource( 1 )
-material/0 = SubResource( 2 )
+[node name="CSGCombiner" type="CSGCombiner" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 31.5066, 0 )
+use_collision = true
 
-[node name="StaticBody" type="StaticBody" parent="MeshInstance"]
+[node name="CSGBox" type="CSGBox" parent="CSGCombiner"]
+width = 341.463
+height = 77.6406
+depth = 346.419
 
-[node name="CollisionShape" type="CollisionShape" parent="MeshInstance/StaticBody"]
-shape = SubResource( 3 )
+[node name="CSGBox2" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.7464, 0 )
+operation = 2
+width = 325.062
+height = 82.8436
+depth = 330.332
+material = SubResource( 1 )
+
+[node name="CSGCombiner2" type="CSGCombiner" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 139.892, 7.48875, -123.454 )
+use_collision = true
+
+[node name="CSGBox" type="CSGBox" parent="CSGCombiner2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.13821, 0 )
+width = 18.0724
+height = 1.47539
+depth = 65.4345
+material = ExtResource( 4 )
+
+[node name="CSGTorus" type="CSGTorus" parent="CSGCombiner2"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 7.62939e-06 )
+inner_radius = 8.20972
+outer_radius = 13.0273
+sides = 18
+ring_sides = 13
+material = SubResource( 3 )
+
+[node name="CSGBox2" type="CSGBox" parent="CSGCombiner2"]
+transform = Transform( 1, 0, 0, 0, 0.994933, 0.100535, 0, -0.100535, 0.994933, -99.491, 0.434245, 65.3841 )
+width = 18.0724
+height = 1.47539
+depth = 65.4345
+material = ExtResource( 4 )
+
+[node name="CSGBox3" type="CSGBox" parent="CSGCombiner2"]
+transform = Transform( 1, 0, 0, 0, 0.994622, -0.103574, 0, 0.103574, 0.994622, -99.491, 0.284334, 130.05 )
+width = 18.0724
+height = 1.47539
+depth = 65.4345
+material = ExtResource( 4 )
+
+[node name="180_Turn" type="CSGCombiner" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.49457 )
+use_collision = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CSGTorus2" type="CSGTorus" parent="180_Turn"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 115.25, 2.73648, -90.5027 )
+inner_radius = 35.2978
+outer_radius = 14.636
+sides = 22
+material = ExtResource( 4 )
+
+[node name="CSGBox2" type="CSGBox" parent="180_Turn"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 121.394, 8.10517, -70.2848 )
+operation = 1
+width = 84.1
+height = 7.15546
+depth = 40.0488
+material = ExtResource( 4 )
+
+[node name="CSGBox" type="CSGBox" parent="180_Turn"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 115.164, 15.2443, -60.2936 )
+operation = 2
+width = 72.6658
+height = 19.7782
+depth = 66.0734
+material = ExtResource( 4 )
+
+[node name="180_Turn2" type="CSGCombiner" parent="."]
+transform = Transform( -1, 0, 0, 0, 1, 0, 0, 0, -1, 180.685, 0, -180.431 )
+use_collision = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CSGTorus2" type="CSGTorus" parent="180_Turn2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 115.25, 2.73648, -90.5027 )
+inner_radius = 35.2978
+outer_radius = 14.636
+sides = 22
+material = ExtResource( 4 )
+
+[node name="CSGBox2" type="CSGBox" parent="180_Turn2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 121.394, 8.10517, -70.2848 )
+operation = 1
+width = 84.1
+height = 7.15546
+depth = 40.0488
+
+[node name="CSGBox" type="CSGBox" parent="180_Turn2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 115.164, 15.2443, -60.2936 )
+operation = 2
+width = 72.6658
+height = 19.7782
+depth = 66.0734
+material = ExtResource( 4 )
