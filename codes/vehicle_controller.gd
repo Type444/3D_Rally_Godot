@@ -1,5 +1,6 @@
 extends VehicleBody
 
+var score = 0
 # ------------------------------------------------
 # Script author: Bastiaan Olij, modified by Warrpy
 # ------------------------------------------------
@@ -58,3 +59,7 @@ func _physics_process(delta):
 		if (steer_target < steer_angle):
 			steer_angle = steer_target
 	steering = steer_angle
+
+func add_score():
+	score+=1
+	print(score)

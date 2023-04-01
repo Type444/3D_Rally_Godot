@@ -1,15 +1,19 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://codes/camera_controller.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Vehicle.tscn" type="PackedScene" id=2]
 [ext_resource path="res://icon.png" type="Texture" id=3]
 [ext_resource path="res://Asphalt.tres" type="Material" id=4]
+[ext_resource path="res://Coin.tscn" type="PackedScene" id=5]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_texture = ExtResource( 3 )
 
 [sub_resource type="SpatialMaterial" id=3]
 albedo_color = Color( 0.878431, 0.0941176, 0.0941176, 1 )
+
+[sub_resource type="SpatialMaterial" id=6]
+albedo_color = Color( 0.270588, 0.101961, 0.101961, 1 )
 
 [sub_resource type="Animation" id=4]
 length = 0.001
@@ -129,6 +133,20 @@ transform = Transform( 1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, -
 width = 18.0724
 height = 1.47539
 depth = 65.6266
+material = ExtResource( 4 )
+
+[node name="CSGBox7" type="CSGBox" parent="CSGCombiner2"]
+transform = Transform( 1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, -226.698, 1.29213, 104.223 )
+width = 18.0724
+height = 1.47539
+depth = 65.6266
+material = ExtResource( 4 )
+
+[node name="CSGBox8" type="CSGBox" parent="CSGCombiner2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -226.726, -2.94814, 37.7152 )
+width = 18.0724
+height = 1.47539
+depth = 110.203
 material = ExtResource( 4 )
 
 [node name="180_Turn" type="CSGCombiner" parent="."]
@@ -270,10 +288,11 @@ sides = 16
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
 
 [node name="CSGBox" type="CSGBox" parent="CSGCombiner3/CSGCylinder/CSGCombiner4"]
-transform = Transform( 0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 0, 0, 1.01788 )
+transform = Transform( 0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 0.298576, 0.216522, 0.521671 )
 width = 6.70794
 height = 62.2973
 depth = 2.29364
+material = SubResource( 6 )
 
 [node name="CSGBox2" type="CSGBox" parent="CSGCombiner3/CSGCylinder/CSGCombiner4"]
 transform = Transform( -4.37114e-08, -1, 0, 0.965926, -4.2222e-08, -0.258819, 0.258819, -1.13133e-08, 0.965926, 0, 0, 0 )
@@ -285,3 +304,14 @@ depth = 2.41323
 autoplay = "rotate"
 anims/RESET = SubResource( 4 )
 anims/rotate = SubResource( 5 )
+
+[node name="CSGTorus" type="CSGTorus" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -86.7226, 9.04167, -130.397 )
+inner_radius = 9.7524
+outer_radius = 14.6449
+sides = 18
+ring_sides = 13
+material = SubResource( 3 )
+
+[node name="Coin" parent="." instance=ExtResource( 5 )]
+transform = Transform( 0.965926, 2.19228e-22, -0.258819, -2.75853e-15, 1, -1.0295e-14, 0.258819, 1.06581e-14, 0.965926, 139.72, 8.85098, -96.937 )
