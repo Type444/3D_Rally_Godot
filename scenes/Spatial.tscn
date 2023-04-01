@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://codes/camera_controller.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Vehicle.tscn" type="PackedScene" id=2]
@@ -10,6 +10,38 @@ albedo_texture = ExtResource( 3 )
 
 [sub_resource type="SpatialMaterial" id=3]
 albedo_color = Color( 0.878431, 0.0941176, 0.0941176, 1 )
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -90, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "rotate"
+length = 3.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -90, 0, 0 ), Vector3( -90, 0, 360 ) ]
+}
 
 [node name="Spatial" type="Spatial"]
 
@@ -78,6 +110,27 @@ height = 1.47539
 depth = 65.4345
 material = ExtResource( 4 )
 
+[node name="CSGBox4" type="CSGBox" parent="CSGCombiner2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.94814, 216.591 )
+width = 18.0724
+height = 1.47539
+depth = 110.203
+material = ExtResource( 4 )
+
+[node name="CSGBox5" type="CSGBox" parent="CSGCombiner2"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -113.796, -2.94814, 262.942 )
+width = 18.0724
+height = 1.47539
+depth = 244.943
+material = ExtResource( 4 )
+
+[node name="CSGBox6" type="CSGBox" parent="CSGCombiner2"]
+transform = Transform( 1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, -226.698, 3.91092, 229.541 )
+width = 18.0724
+height = 1.47539
+depth = 65.6266
+material = ExtResource( 4 )
+
 [node name="180_Turn" type="CSGCombiner" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.49457 )
 use_collision = true
@@ -136,3 +189,99 @@ width = 72.6658
 height = 19.7782
 depth = 66.0734
 material = ExtResource( 4 )
+
+[node name="180_Turn3" type="CSGCombiner" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -49.8466, 0, 127.977 )
+use_collision = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CSGTorus2" type="CSGTorus" parent="180_Turn3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 115.25, 2.73648, -90.5027 )
+inner_radius = 35.2978
+outer_radius = 14.636
+sides = 22
+material = ExtResource( 4 )
+
+[node name="CSGBox2" type="CSGBox" parent="180_Turn3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 121.394, 8.10517, -70.2848 )
+operation = 1
+width = 84.1
+height = 7.15546
+depth = 40.0488
+material = ExtResource( 4 )
+
+[node name="CSGBox" type="CSGBox" parent="180_Turn3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 115.164, 15.2443, -60.2936 )
+operation = 2
+width = 72.6658
+height = 19.7782
+depth = 66.0734
+material = ExtResource( 4 )
+
+[node name="180_Turn4" type="CSGCombiner" parent="."]
+transform = Transform( -1, 0, -5.96046e-08, 0, 1, 0, 5.96046e-08, 0, -1, 230.177, 0, -50.4706 )
+use_collision = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CSGTorus2" type="CSGTorus" parent="180_Turn4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 115.25, 2.73648, -90.5027 )
+inner_radius = 35.2978
+outer_radius = 14.636
+sides = 22
+material = ExtResource( 4 )
+
+[node name="CSGBox2" type="CSGBox" parent="180_Turn4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 121.394, 8.10517, -70.2848 )
+operation = 1
+width = 84.1
+height = 7.15546
+depth = 40.0488
+material = ExtResource( 4 )
+
+[node name="CSGBox" type="CSGBox" parent="180_Turn4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 115.164, 15.2443, -60.2936 )
+operation = 2
+width = 72.6658
+height = 19.7782
+depth = 66.0734
+material = ExtResource( 4 )
+
+[node name="CSGCombiner3" type="CSGCombiner" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -103.529, 19.875, 11.7244 )
+use_collision = true
+
+[node name="CSGCylinder" type="CSGCylinder" parent="CSGCombiner3"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 15.127, 30.9326, 31.6392 )
+radius = 40.5574
+height = 65.3457
+sides = 16
+
+[node name="CSGCylinder2" type="CSGCylinder" parent="CSGCombiner3/CSGCylinder"]
+operation = 2
+radius = 32.8198
+height = 72.2359
+sides = 16
+
+[node name="CSGCombiner4" type="CSGCombiner" parent="CSGCombiner3/CSGCylinder"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+
+[node name="CSGBox" type="CSGBox" parent="CSGCombiner3/CSGCylinder/CSGCombiner4"]
+transform = Transform( 0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 0, 0, 1.01788 )
+width = 6.70794
+height = 62.2973
+depth = 2.29364
+
+[node name="CSGBox2" type="CSGBox" parent="CSGCombiner3/CSGCylinder/CSGCombiner4"]
+transform = Transform( -4.37114e-08, -1, 0, 0.965926, -4.2222e-08, -0.258819, 0.258819, -1.13133e-08, 0.965926, 0, 0, 0 )
+width = 8.64174
+height = 62.2973
+depth = 2.41323
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CSGCombiner3/CSGCylinder/CSGCombiner4"]
+autoplay = "rotate"
+anims/RESET = SubResource( 4 )
+anims/rotate = SubResource( 5 )
