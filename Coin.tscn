@@ -84,4 +84,9 @@ autoplay = "jump"
 anims/RESET = SubResource( 4 )
 anims/jump = SubResource( 5 )
 
+[node name="OmniLight" type="OmniLight" parent="."]
+light_color = Color( 0.811765, 0.854902, 0.0470588, 1 )
+light_energy = 3.0
+omni_range = 10.7094
+
 [connection signal="body_entered" from="." to="." method="_on_Coin_body_entered"]

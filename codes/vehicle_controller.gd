@@ -62,4 +62,15 @@ func _physics_process(delta):
 
 func add_score():
 	score+=1
+	$MenuLayer/Control/Score.text = "Монеты: " + str(score)
 	print(score)
+	
+func _process(delta):
+	if Input.is_action_just_pressed("reset"):
+		translation.x = 0
+		translation.y = 0
+		translation.z = 0
+		rotation_degrees.x = 0
+		rotation_degrees.y = 0
+		rotation_degrees.z = 0
+	$MenuLayer/Control/Speedometer/Arrow.rotation_degrees = sqrt(pow(linear_velocity.x, 2)+pow(linear_velocity.z,2))*3-136

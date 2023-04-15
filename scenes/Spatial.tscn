@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://codes/camera_controller.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Vehicle.tscn" type="PackedScene" id=2]
 [ext_resource path="res://icon.png" type="Texture" id=3]
 [ext_resource path="res://Asphalt.tres" type="Material" id=4]
 [ext_resource path="res://Coin.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/Finish.gd" type="Script" id=6]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_texture = ExtResource( 3 )
@@ -46,6 +47,9 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector3( -90, 0, 0 ), Vector3( -90, 0, 360 ) ]
 }
+
+[sub_resource type="BoxShape" id=7]
+extents = Vector3( 13.277, 17.6057, 3.28598 )
 
 [node name="Spatial" type="Spatial"]
 
@@ -313,5 +317,38 @@ sides = 18
 ring_sides = 13
 material = SubResource( 3 )
 
-[node name="Coin" parent="." instance=ExtResource( 5 )]
+[node name="Coins" type="Spatial" parent="."]
+
+[node name="Coin" parent="Coins" instance=ExtResource( 5 )]
 transform = Transform( 0.965926, 2.19228e-22, -0.258819, -2.75853e-15, 1, -1.0295e-14, 0.258819, 1.06581e-14, 0.965926, 139.72, 8.85098, -96.937 )
+
+[node name="Coin2" parent="Coins" instance=ExtResource( 5 )]
+transform = Transform( 0.965926, 2.19228e-22, -0.258819, -2.75853e-15, 1, -1.0295e-14, 0.258819, 1.06581e-14, 0.965926, 126.56, 8.85098, -72.9261 )
+
+[node name="Coin3" parent="Coins" instance=ExtResource( 5 )]
+transform = Transform( 0.965926, 2.19228e-22, -0.258819, -2.75853e-15, 1, -1.0295e-14, 0.258819, 1.06581e-14, 0.965926, 98.6848, 8.85098, -74.8134 )
+
+[node name="Coin4" parent="Coins" instance=ExtResource( 5 )]
+transform = Transform( 0.965926, 2.19228e-22, -0.258819, -2.75853e-15, 1, -1.0295e-14, 0.258819, 1.06581e-14, 0.965926, 85.2798, 8.85098, -104.762 )
+
+[node name="Coin5" parent="Coins" instance=ExtResource( 5 )]
+transform = Transform( 0.965926, 2.19228e-22, -0.258819, -2.75853e-15, 1, -1.0295e-14, 0.258819, 1.06581e-14, 0.965926, 57.2266, 8.85098, -113.557 )
+
+[node name="Coin6" parent="Coins" instance=ExtResource( 5 )]
+transform = Transform( 0.965926, 2.19228e-22, -0.258819, -2.75853e-15, 1, -1.0295e-14, 0.258819, 1.06581e-14, 0.965926, 40.2077, 8.85098, -90.2362 )
+
+[node name="Coin7" parent="Coins" instance=ExtResource( 5 )]
+transform = Transform( 0.965926, 2.19228e-22, -0.258819, -2.75853e-15, 1, -1.0295e-14, 0.258819, 1.06581e-14, 0.965926, 40.7514, 14.6238, -14.1043 )
+
+[node name="Coin8" parent="Coins" instance=ExtResource( 5 )]
+transform = Transform( 0.965926, 2.19228e-22, -0.258819, -2.75853e-15, 1, -1.0295e-14, 0.258819, 1.06581e-14, 0.965926, 40.341, 16.0815, -2.01843 )
+
+[node name="Finish" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -82.055, 0, -138.929 )
+script = ExtResource( 6 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Finish"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.65354, 5.461, 8.59055 )
+shape = SubResource( 7 )
+
+[connection signal="body_entered" from="Finish" to="Finish" method="_on_Finish_body_entered"]
